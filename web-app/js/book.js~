@@ -1,0 +1,54 @@
+var app = angular.module('store', []);
+app.controller('BookListController', function ($http, $scope, $rootScope, $location) {
+    console.log('Call load Function');
+    //Show list of all book list
+    $http.get($location.path()+"/book/loadBookJson")
+        .success(function (data) {
+            $scope.books = data;
+        });
+    $scope.showDetails=function(title){
+       // alert(title);
+        $http.post("book/bookData",{title:title})
+            .success(function(data){
+            //alert(data);
+                $location.path("book/bookDetails");
+        })
+            .error(function(data){
+               alert("Error "+data);
+            });
+    }
+});
+
+app.controller('PanelController', function () {
+
+    this.tab = 1;
+
+    this.selectTab = function (setTab) {
+        this.tab = setTab;
+    };
+
+    this.isSelected = function (checkTab) {
+        return this.tab === checkTab;
+    };
+
+});
+
+app.controller('ReviewController',function(){
+    this.review={};
+    this.addReview=function(product){
+        product.reviews.push(this.review);
+        //To clear the form
+        this.review={};
+    };
+});
+
+app.controller('BookDetailController',function(){
+    $http.get("book/bookDetails")
+        .success(function (data) {
+            $scope.title = data;
+        });
+});
+
+app.controller('Login123Controller', function ($scope, $http, $location, $rootScope) {
+
+});

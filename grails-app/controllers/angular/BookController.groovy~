@@ -1,0 +1,46 @@
+package angular
+
+import com.bookstore.User
+import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['permitAll'])
+class BookController {
+
+	static allowedMethods = [loadBookJson: "GET", bookData: "POST"]
+
+    def index() {
+    }
+
+    def loadBookJson = {
+        def books=Book.list()
+        books.each{
+            println("title "+it.title)
+            println("description "+it.description)
+            println("ISBN "+it.ISBN)
+            println("review "+it.reviews)
+            println("Author "+it.author.name)
+        }
+        println(books as JSON)
+        render books as JSON
+    }
+
+    def login(){
+//        println("Finally Got It")
+//        def username=request.JSON.username;
+//        def password=request.JSON.password;
+//        println(username+" "+password);
+//        def user=User.findByUsername(username)
+//        println(user)
+//        render user as JSON
+    }
+    def bookDetails(){
+
+    }
+    def bookData(){
+        def title=request.JSON.title;
+        println("***********88888"+title)
+        def book=Book.findByTitle(title)
+        render book as JSON
+    }
+}
