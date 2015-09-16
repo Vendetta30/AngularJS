@@ -65,4 +65,14 @@ class StartController {
     def validation() {
         render(view: 'validation')
     }
+
+    def example1(){
+        render (view: 'exampleOne')
+    }
+    def example2(){
+        render (view: 'exampleTwo')
+    }
+    def example3(){
+        render (view: 'exampleThree')
+    }
 }

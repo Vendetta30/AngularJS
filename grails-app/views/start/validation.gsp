@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vijay
-  Date: 30/5/15
-  Time: 3:06 PM
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html ng-app="store">
 <head>
